@@ -1,0 +1,19 @@
+language: objective-c
+before_install:
+  - brew update
+install:
+  - mkdir -p $(brew --repo)/Library/Taps/kdheepak
+  - ln -s $PWD $(brew --repo)/Library/Taps/kdheepak/homebrew-julia
+  - brew tap --repair
+env:
+  - PACKAGE=helics
+script:
+  - brew tap kdheepak/julia
+  - brew install -v $PACKAGE --HEAD
+
+branches:
+  except:
+    - gh-pages
+
+notifications:
+  email: false
